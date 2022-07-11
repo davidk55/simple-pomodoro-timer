@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= htmlWebpackPlugin.options.title %></title
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+  <body>
+    <main>
+      <h1 class="heading-1">Simple Pomodoro Timer</h1>
+      <button class="remaining-time" type="button">25:00</button>
+      <button id="settings" type="button"></button>
+      <div class="settings-popup" id="settings-popup">
+        <div class="settings-popup__session-time">
+          <label for="input-session-time">Session Time (Minutes)</label>
+          <input type="number" class="settings-popup__session-time__input settings-input"
+            name="input-session-time" id="input-session-time" min="0"></input>
+        </div>
+        <div class="settings-popup__break-time">
+          <label for="input-break-time">Break Time (Minutes)</label>
+          <input type="number" class="settings-popup__break-time__input settings-input"
+            name="input-break-time" id="input-break-time" min="0"></input>
+        </div>
+        <div class="settings-popup__session-count">
+          <label for="input-session-count">Session Count</label>
+          <input type="number" class="settings-popup__session-count__input settings-input"
+            name="input-session-count" id="input-session-count" min="0"></input>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>Made by <a href="https://github.com/davidk55">DavidK55</a>.</p>
+    </footer>
+  </body>
+</html>
