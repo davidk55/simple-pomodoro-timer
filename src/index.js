@@ -1,6 +1,12 @@
 import './styles/main.scss';
 
-// Get inputs
+class Settings {
+  constructor(sessionTime, breakTime, sessionCount) {
+    this.sessionTime = sessionTime;
+    this.breakTime = breakTime;
+    this.sessionCount = sessionCount;
+  }
+}
 
 let settings;
 
@@ -9,12 +15,9 @@ function initialSetup() {
   if (checkForLocalStorage()) {
     // load settings from local storage
   } else {
-    settings = {
-      sessionTime: 25,
-      breakTime: 5,
-      sessionCount: 3,
-    };
+    settings = new Settings(25, 5, 3);
   }
+
   const inputSessionTime = document.querySelector('#input-session-time');
   const inputBreakTime = document.querySelector('#input-break-time');
   const inputSessionCount = document.querySelector('#input-session-count');
@@ -51,11 +54,11 @@ function applySettings(settings) {
 initialSetup();
 
 function toggleSettingsPopup() {
-  const settings = document.querySelector('#settings-popup');
-  if (settings.classList.contains('active')) {
-    settings.classList.remove('active');
+  const settings_popup = document.querySelector('#settings-popup');
+  if (settings_popup.classList.contains('active')) {
+    settings_popup.classList.remove('active');
   } else {
-    settings.classList.add('active');
+    settings_popup.classList.add('active');
   }
 }
 
@@ -70,11 +73,10 @@ document.querySelectorAll('.settings-input').forEach((e) => {
   });
 });
 
-document.addEventListener("click", function(event) {
+document.addEventListener('click', function (event) {
+  if (event.target.closest('#settings-popup')) return;
+  if (event.target.closest('#settings')) return;
 
-  if (event.target.closest("#settings-popup")) return;
-  if (event.target.closest("#settings")) return;
-
-  const settings = document.querySelector('#settings-popup');
-  settings.classList.remove("active");
-})
+  const settings_popup = document.querySelector('#settings-popup');
+  settings_popup.classList.remove('active');
+});
