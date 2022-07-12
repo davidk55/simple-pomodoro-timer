@@ -10,8 +10,7 @@ class Settings {
 
 let settings;
 
-// TODO: use self executing function
-function initialSetup() {
+(() => {
   if (checkForLocalStorage()) {
     // load settings from local storage
   } else {
@@ -27,7 +26,7 @@ function initialSetup() {
   inputSessionCount.value = settings.sessionCount;
 
   applySettings(settings);
-}
+})();
 
 function getCurrentSettings() {
   const sessionTimeValue = document.querySelector('#input-session-time').value;
@@ -50,8 +49,6 @@ function checkForLocalStorage() {
 function applySettings(settings) {
   // TODO: implement timer
 }
-
-initialSetup();
 
 function toggleSettingsPopup() {
   const settings_popup = document.querySelector('#settings-popup');
