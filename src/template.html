@@ -8,23 +8,23 @@
   <body>
     <main>
       <h1 class="heading-1">Simple Pomodoro Timer</h1>
-      <button class="remaining-time" type="button">25:00</button>
+      <button id="remaining-time" class="remaining-time ready-for-session" type="button">25:00</button>
       <button id="settings" type="button"></button>
       <div class="settings-popup" id="settings-popup">
-        <div class="settings-popup__session-time">
-          <label for="input-session-time">Session Time (Minutes)</label>
-          <input type="number" class="settings-popup__session-time__input settings-input"
-            name="input-session-time" id="input-session-time" min="0"></input>
+        <div class="settings-popup__pomodoro-time">
+          <label for="input-pomodoro-time">Pomodoro Time (Minutes)</label>
+          <input type="number" class="settings-popup__pomodoro-time__input settings-input"
+            name="input-pomodoro-time" id="settings-pomodoro-time" min="1"></input>
         </div>
         <div class="settings-popup__break-time">
           <label for="input-break-time">Break Time (Minutes)</label>
           <input type="number" class="settings-popup__break-time__input settings-input"
-            name="input-break-time" id="input-break-time" min="0"></input>
+            name="input-break-time" id="settings-break-time" min="1"></input>
         </div>
-        <div class="settings-popup__session-count">
-          <label for="input-session-count">Session Count</label>
-          <input type="number" class="settings-popup__session-count__input settings-input"
-            name="input-session-count" id="input-session-count" min="0"></input>
+        <div class="settings-popup__pomodoro-count">
+          <label for="input-pomodoro-count">Pomodoro Count</label>
+          <input type="number" class="settings-popup__pomodoro-count__input settings-input"
+            name="input-pomodoro-count" id="settings-pomodoro-count" min="1"></input>
         </div>
       </div>
     </main>

@@ -54,6 +54,14 @@ body {
       padding: 1.5rem 6rem;
       font-size: 2rem;
       box-shadow: 2px 2px 10px rgba(0, 2, 4, 0.1);
+
+      &::before {
+        // TODO: create icons for current modes
+      }
+
+      &::after {
+        // TODO: show current pomodoro round of pomodoro count
+      }
     }
 
     #settings {
@@ -99,7 +107,7 @@ body {
         font-weight: 700;
       }
 
-      &__session-time {
+      &__pomodoro-time {
         @extend %settings-option;
 
         &__input {
@@ -115,7 +123,7 @@ body {
         }
       }
 
-      &__session-count {
+      &__pomodoro-count {
         @extend %settings-option;
 
         &__input {
