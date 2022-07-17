@@ -221,7 +221,7 @@ document.querySelector('#remaining-time').addEventListener('click', () => {
         'ready-for-pomodoro'
       );
       remainingTimeButton.classList.add('ready-for-session');
-      updateButton(settings.pomodoroTime);
+      updateButton(toRemainingString(settings.pomodoroTime * 1000 * 60));
       return;
     }
     updateSessesioInformation();
