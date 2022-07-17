@@ -8,7 +8,10 @@
   <body>
     <main>
       <h1 class="heading-1">Simple Pomodoro Timer</h1>
-      <button id="remaining-time" class="remaining-time ready-for-session" type="button">25:00</button>
+      <div class="remaining-time">
+        <button id="remaining-time" class="remaining-time__btn ready-for-session" type="button">25:00</button>
+        <div id="session-information" class="remaining-time__session-information"></div>
+      </div>
       <button id="settings" type="button"></button>
       <div class="settings-popup" id="settings-popup">
         <div class="settings-popup__pomodoro-time">
