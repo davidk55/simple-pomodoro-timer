@@ -69,12 +69,20 @@ body {
           top: 1.6rem;
           background-repeat: no-repeat;
         }
+
+
       }
 
-      &::after {
-        // TODO: show current pomodoro round of pomodoro count
+      &__session-information {
+        position: absolute;
+        left: 14.5rem;
+        top: 2.1rem;
+        font-size: 1rem;
+        color: var(--brown);
+        visibility: visible;
       }
     }
+
 
     #settings {
       @include button(0);
@@ -175,4 +183,7 @@ body {
 .ready-for-pomodoro#remaining-time::before {
   background-image: url('./../assets/coffee.svg');
   top: 1.4rem;
+}
+.remaining-time.ready-for-session + #session-information {
+  visibility: hidden;
 }

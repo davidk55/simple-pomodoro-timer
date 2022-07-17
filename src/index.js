@@ -139,6 +139,17 @@ function decreaseLeftPomodoros() {
   remainingTimeButton.classList.add('left-pomodoros-' + num);
 }
 
+function updateSessesioInformation() {
+  const sessInfo = document.querySelector('#session-information');
+  let cl = getLeftPomodorosClass();
+  if (!cl) return;
+
+  let pomodorosLeft = parseInt(cl.split('-')[2]);
+
+  let pomodoroCount = settings.pomodoroCount;
+  sessInfo.innerText = pomodoroCount - pomodorosLeft + 1 + '/' + pomodoroCount;
+}
+
 // Listener
 document.querySelector('#settings').addEventListener('click', () => {
   toggleSettingsPopup();
@@ -171,6 +182,7 @@ document.querySelector('#remaining-time').addEventListener('click', () => {
       ['ready-for-break'],
       ['pomodoro-running']
     );
+    updateSessesioInformation();
   }
 
   if (remainingTimeButton.classList.contains('ready-for-break')) {
@@ -194,6 +206,7 @@ document.querySelector('#remaining-time').addEventListener('click', () => {
       updateButton(settings.pomodoroTime);
       return;
     }
+    updateSessesioInformation();
 
     timerHandler(
       settings.pomodoroTime,
