@@ -187,7 +187,7 @@ document.addEventListener('click', (event) => {
   settings_popup.classList.remove('active');
 });
 
-document.querySelector('#remaining-time').addEventListener('click', () => {
+function pomodoroStart() {
   if (remainingTimeButton.classList.contains('ready-for-session')) {
     timerHandler(
       settings.pomodoroTime,
@@ -234,4 +234,13 @@ document.querySelector('#remaining-time').addEventListener('click', () => {
       ['pomodoro-running']
     );
   }
+
+}
+
+document.querySelector('#remaining-time').addEventListener('click', () => {
+  pomodoroStart();
 });
+
+document.addEventListener('keydown', (e) => {
+  if(e.code == 'Space') pomodoroStart();
+})
