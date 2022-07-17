@@ -63,14 +63,12 @@ body {
         &::before {
           content: '';
           position: absolute;
-          left: 3rem;
+          left: 2.5rem;
           // background-image: url('./../assets/tomato.svg');
           padding: 1rem;
           top: 1.6rem;
           background-repeat: no-repeat;
         }
-
-
       }
 
       &__session-information {
@@ -82,7 +80,6 @@ body {
         visibility: visible;
       }
     }
-
 
     #settings {
       @include button(0);
