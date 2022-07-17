@@ -106,8 +106,8 @@ function startTimer(timerDurationMinutes, functionExecuteAtEnding) {
     remainingMilliseconds = endTime - Date.parse(new Date());
 
     if (remainingMilliseconds <= 0) {
-      clearInterval(interval);
       functionExecuteAtEnding();
+      clearInterval(interval);
     }
     updateButton(toRemainingString(remainingMilliseconds));
   }, 1000);
