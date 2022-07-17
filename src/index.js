@@ -37,6 +37,7 @@ let audio = new Audio(alarm);
   settingsBreakTime.value = settings.breakTime;
   settingsPomodoroCount.value = settings.pomodoroCount;
 
+  updateButton(toRemainingString(settings.pomodoroTime * 60 * 1000));
 })();
 
 function getNewSettings() {
