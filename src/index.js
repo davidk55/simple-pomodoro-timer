@@ -1,4 +1,5 @@
 import './styles/main.scss';
+import alarm from './assets/alarm.wav';
 
 class Settings {
   constructor(pomodoroTime, breakTime, pomodoroCount) {
@@ -10,6 +11,7 @@ class Settings {
 
 let settings;
 const remainingTimeButton = document.querySelector('#remaining-time');
+let audio = new Audio(alarm);
 
 (() => {
   if (checkForLocalStorage()) {
@@ -78,7 +80,8 @@ function timerHandler(
   const endingFunction = function () {
     remainingTimeButton.classList.add(...classesToAddAtEnding);
     remainingTimeButton.classList.remove(...classesToRemoveAtEnding);
-    // TODO: play sound
+    audio.loop = true;
+    audio.play();
   };
 
   startTimer(timerDurationMinutes, endingFunction);
@@ -186,6 +189,8 @@ document.querySelector('#remaining-time').addEventListener('click', () => {
   }
 
   if (remainingTimeButton.classList.contains('ready-for-break')) {
+    audio.pause();
+    audio.currentTime = 0;
     timerHandler(
       settings.breakTime,
       ['break-running'],
@@ -196,6 +201,8 @@ document.querySelector('#remaining-time').addEventListener('click', () => {
   }
 
   if (remainingTimeButton.classList.contains('ready-for-pomodoro')) {
+    audio.pause();
+    audio.currentTime = 0;
     decreaseLeftPomodoros();
     if (checkForFinish()) {
       remainingTimeButton.classList.remove(
