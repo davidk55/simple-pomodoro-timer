@@ -114,28 +114,29 @@ function toggleSettingsPopup() {
   }
 }
 
-function checkForFinish() {
-  let finished = false;
+function getLeftPomodorosClass() {
   for (let cl of remainingTimeButton.classList) {
-    if (cl.match('left-pomodoros-0')) {
-      finished = true;
-      break;
+    if (cl.match(/left-pomodoros-\d/)) {
+      return cl;
     }
   }
-  return finished;
+}
+
+function checkForFinish() {
+  let cl = getLeftPomodorosClass();
+  if (!cl) return false;
+
+  return cl.match('left-pomodoros-0');
 }
 
 function decreaseLeftPomodoros() {
-  for (let cl of remainingTimeButton.classList) {
-    if (cl.match(/left-pomodoros-\d/)) {
-      remainingTimeButton.classList.remove(cl);
-      let num = parseInt(cl.split('-')[2]);
-      console.log(num);
-      num--;
-      remainingTimeButton.classList.add('left-pomodoros-' + num);
-      break;
-    }
-  }
+  let cl = getLeftPomodorosClass();
+  if (!cl) return;
+
+  remainingTimeButton.classList.remove(cl);
+  let num = parseInt(cl.split('-')[2]);
+  num--;
+  remainingTimeButton.classList.add('left-pomodoros-' + num);
 }
 
 // Listener
