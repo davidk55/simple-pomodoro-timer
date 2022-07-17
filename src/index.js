@@ -160,7 +160,7 @@ function updateSessesioInformation() {
   let pomodorosLeft = parseInt(cl.split('-')[2]);
 
   let pomodoroCount = settings.pomodoroCount;
-  sessInfo.innerText = pomodoroCount - pomodorosLeft + 1 + '/' + pomodoroCount;
+  sessInfo.innerText = pomodoroCount - pomodorosLeft + '/' + pomodoroCount;
 }
 
 // Listener
@@ -188,14 +188,31 @@ document.addEventListener('click', (event) => {
 });
 
 function pomodoroStart() {
+  if (
+    remainingTimeButton.classList.contains('ready-for-break') &&
+    checkForFinish()
+  ) {
+    audio.pause();
+    audio.currentTime = 0;
+    remainingTimeButton.classList.remove('left-pomodoros-0', 'ready-for-break');
+
+    remainingTimeButton.classList.add('ready-for-session');
+    updateButton(toRemainingString(settings.pomodoroTime * 1000 * 60));
+    return;
+  }
+
   if (remainingTimeButton.classList.contains('ready-for-session')) {
+    remainingTimeButton.classList.add(
+      'left-pomodoros-' + settings.pomodoroCount
+    );
     timerHandler(
       settings.pomodoroTime,
-      ['pomodoro-running', 'left-pomodoros-' + settings.pomodoroCount],
+      ['pomodoro-running'],
       ['ready-for-session'],
       ['ready-for-break'],
       ['pomodoro-running']
     );
+    decreaseLeftPomodoros();
     updateSessesioInformation();
   }
 
@@ -215,15 +232,6 @@ function pomodoroStart() {
     audio.pause();
     audio.currentTime = 0;
     decreaseLeftPomodoros();
-    if (checkForFinish()) {
-      remainingTimeButton.classList.remove(
-        'left-pomodoros-0',
-        'ready-for-pomodoro'
-      );
-      remainingTimeButton.classList.add('ready-for-session');
-      updateButton(toRemainingString(settings.pomodoroTime * 1000 * 60));
-      return;
-    }
     updateSessesioInformation();
 
     timerHandler(
@@ -234,7 +242,6 @@ function pomodoroStart() {
       ['pomodoro-running']
     );
   }
-
 }
 
 document.querySelector('#remaining-time').addEventListener('click', () => {
@@ -242,5 +249,5 @@ document.querySelector('#remaining-time').addEventListener('click', () => {
 });
 
 document.addEventListener('keydown', (e) => {
-  if(e.code == 'Space') pomodoroStart();
-})
+  if (e.code == 'Space') pomodoroStart();
+});
