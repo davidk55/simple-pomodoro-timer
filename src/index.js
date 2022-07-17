@@ -32,11 +32,11 @@ let audio = new Audio(alarm);
     '#settings-pomodoro-count'
   );
 
+  // load default settings
   settingsPomodoroTime.value = settings.pomodoroTime;
   settingsBreakTime.value = settings.breakTime;
   settingsPomodoroCount.value = settings.pomodoroCount;
 
-  applySettings(settings);
 })();
 
 function getNewSettings() {
@@ -101,10 +101,7 @@ function timerHandler(
 
 function startTimer(timerDurationMinutes, functionExecuteAtEnding) {
   const endTime = Date.parse(new Date()) + timerDurationMinutes * 60 * 1000;
-  console.log(Date.parse(new Date()));
-  console.log(timerDurationMinutes * 60 * 1000);
   let remainingMilliseconds;
-  // updateButton(toRemainingString(endTime - Date.parse(new Date()) - 1000));
   const interval = setInterval(() => {
     remainingMilliseconds = endTime - Date.parse(new Date());
 
