@@ -14,8 +14,12 @@ const remainingTimeButton = document.querySelector('#remaining-time');
 let audio = new Audio(alarm);
 
 (() => {
-  if (checkForLocalStorage()) {
-    // load settings from local storage
+  if (checkForSettingsInLocalStorage()) {
+    settings = new Settings(
+      localStorage.getItem('pomodoro-time'),
+      localStorage.getItem('break-time'),
+      localStorage.getItem('pomodoro-count')
+    );
   } else {
     settings = new Settings(25, 5, 3);
   }
@@ -46,9 +50,17 @@ function getNewSettings() {
   return new Settings(pomodoroTimeValue, breakTimeValue, pomodoroCountValue);
 }
 
-function checkForLocalStorage() {
-  // TODO: create functions to store to local storage
+function checkForSettingsInLocalStorage() {
+  if (localStorage.getItem('pomodoro-time')) {
+    return true;
+  }
   return false;
+}
+
+function saveSettingsToLocalStorage() {
+  localStorage.setItem('pomodoro-time', settings.pomodoroTime);
+  localStorage.setItem('break-time', settings.breakTime);
+  localStorage.setItem('pomodoro-count', settings.pomodoroCount);
 }
 
 function applySettings(given_settings) {
@@ -161,6 +173,7 @@ document.querySelector('#settings').addEventListener('click', () => {
 document.querySelectorAll('.settings-input').forEach((e) => {
   e.addEventListener('change', () => {
     applySettings(getNewSettings());
+    saveSettingsToLocalStorage();
 
     if (remainingTimeButton.classList.contains('ready-for-session')) {
       updateButton(toRemainingString(settings.pomodoroTime * 60 * 1000));
