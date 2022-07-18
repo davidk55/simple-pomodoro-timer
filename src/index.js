@@ -15,11 +15,7 @@ let audio = new Audio(alarm);
 
 (() => {
   if (checkForSettingsInLocalStorage()) {
-    settings = new Settings(
-      localStorage.getItem('pomodoro-time'),
-      localStorage.getItem('break-time'),
-      localStorage.getItem('pomodoro-count')
-    );
+    settings = JSON.parse(localStorage.getItem('settings'));
   } else {
     settings = new Settings(25, 5, 3);
   }
@@ -52,16 +48,14 @@ function getNewSettings() {
 }
 
 function checkForSettingsInLocalStorage() {
-  if (localStorage.getItem('pomodoro-time')) {
+  if (localStorage.getItem('settings')) {
     return true;
   }
   return false;
 }
 
 function saveSettingsToLocalStorage() {
-  localStorage.setItem('pomodoro-time', settings.pomodoroTime);
-  localStorage.setItem('break-time', settings.breakTime);
-  localStorage.setItem('pomodoro-count', settings.pomodoroCount);
+  localStorage.setItem("settings", JSON.stringify(settings));
 }
 
 function applySettings(given_settings) {
